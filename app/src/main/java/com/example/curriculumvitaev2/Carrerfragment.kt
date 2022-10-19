@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +35,22 @@ class carrerfragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var EdList: List<CareerData>
+
+        EdList= listOf(
+            CareerData(R.drawable.ic_logo_esprit,"Esprit","Ghazela","today","tmrw"),
+            CareerData(R.drawable.ic_logo_harvard,"Harvard","USA","today","tmrw"),
+            CareerData(R.drawable.ic_logo_cambridge,"Cambridge","UK","today","tmrw"),
+
+            )
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_carrerfragment, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_carrerfragment, container, false)
+        val recyclerview = view?.findViewById<RecyclerView>(R.id.EdRecycler)
+        recyclerview?.layoutManager = LinearLayoutManager(context)
+        val adapter = CareerAdapter(EdList)
+        recyclerview?.adapter=adapter
+        return view
+
     }
 
     companion object {
