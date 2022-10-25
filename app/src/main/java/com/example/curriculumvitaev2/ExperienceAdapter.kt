@@ -1,54 +1,26 @@
 package com.example.curriculumvitaev2
 
-
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ExperienceAdapter (private var myList: List<ExperienceData>) : RecyclerView.Adapter<ExperienceAdapter.ViewHolder>() {
+class ExperienceAdapter(val ExpList : MutableList<Experience>) : RecyclerView.Adapter<ExperienceViewHolder>() {
 
-    // create new views
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        // inflates the card_view_design view
-        // that is used to hold list item
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.singleitemexp ,parent, false)
-
-        return ViewHolder(view)
-    }
-    // Holds the views for adding it to image and text
-    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imageexp)
-        val cName: TextView = itemView.findViewById(R.id.compnameexp)
-        val cAdress: TextView = itemView.findViewById(R.id.addressexp)
-        val desc: TextView = itemView.findViewById(R.id.description)
-        val startDate: TextView=itemView.findViewById(R.id.startDate)
-        val endDate: TextView=itemView.findViewById(R.id.endDate)
-    }
-    // binds the list items to a view
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        val ItemsViewModel = myList[position]
-
-        // sets the image to the imageview from our itemHolder class
-        holder.imageView.setImageResource(ItemsViewModel.image)
-
-        // sets the text to the textview from our itemHolder class
-        holder.cName.text = ItemsViewModel.companyName
-        holder.cAdress.text = ItemsViewModel.companyAdress
-        holder.desc.text = ItemsViewModel.description
-        holder.startDate.text=ItemsViewModel.startDate
-        holder.endDate.text=ItemsViewModel.endDate
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExperienceViewHolder {
+        val rootView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.experience_single_item, parent, false)
+        return ExperienceViewHolder(rootView)
 
     }
-
-    // return the number of the items in the list
-    override fun getItemCount(): Int {
-        return myList.size
+    override fun onBindViewHolder(holder: ExperienceViewHolder, position: Int) {
+        holder.ExpPic.setImageResource(ExpList[position].ExpPic)
+        holder.ExpName.setText(ExpList[position].ExpName)
+        holder.ExpLoc.setText(ExpList[position].ExpLoc)
+        holder.ExpFirstDate.setText(ExpList[position].ExpFirstDate)
+        holder.ExpLastdate.setText(ExpList[position].ExpLastDate)
+        holder.ExpDesc.setText(ExpList[position].ExpDesc)
     }
 
+    override fun getItemCount(): Int = ExpList.size
 
 }
