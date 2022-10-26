@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.curriculumvitaev2.Data.Experience
+import com.example.curriculumvitaev2.utils.AppDataBase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,22 +46,23 @@ class ExperienceFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        dataBase = AppDataBase.getDatabase(view.context)
+        lateinit var expList : MutableList<Experience>
+        expList = ArrayList()
+        expList = dataBase.expDAO().getAllChamps() as MutableList<Experience>
 
         ExperienceRecycler = view.findViewById(R.id.ExperienceRecycler)!!
 
 
-        var ExperienceList : MutableList<Experience> = ArrayList()
-
-        ExperienceList.add(Experience(ExpPic = R.drawable.ic_logo_amazon,ExpName = "AMAZONE",ExpLoc = "United States",ExpFirstDate = "01/09/2019",ExpLastDate = "TODAY",ExpDesc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus imperdiet cursus elit at euismod. Maecenas bibendum eget arcu vitae malesuada. Quisque lectus metus, venenatis ut auctor et, vestibulum a orci. Sed ac turpis congue, bibendum mauris eu, condimentum velit. Curabitur id velit et dui tristique gravida. Proin neque velit, aliquet ac tristique ac, tempus id nisl. Donec congue mollis purus, sit amet venenatis massa commodo eget. Aliquam erat volutpat."))
-        ExperienceList.add(Experience(ExpPic = R.drawable.ic_logo_esprit,ExpName = "ESPRIT",ExpLoc = "Tunisie",ExpFirstDate = "01/09/2018",ExpLastDate = "31/08/2019",ExpDesc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus imperdiet cursus elit at euismod. Maecenas bibendum eget arcu vitae malesuada. Quisque lectus metus, venenatis ut auctor et, vestibulum a orci. Sed ac turpis congue, bibendum mauris eu, condimentum velit. Curabitur id velit et dui tristique gravida. Proin neque velit, aliquet ac tristique ac, tempus id nisl. Donec congue mollis purus, sit amet venenatis massa commodo eget. Aliquam erat volutpat."))
-        ExperienceList.add(Experience(ExpPic = R.drawable.ic_logo_microsoft,ExpName = "MICROSOFT",ExpLoc = "UNITED KINGDOM",ExpFirstDate = "01/09/2015",ExpLastDate = "31/09/2018",ExpDesc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus imperdiet cursus elit at euismod. Maecenas bibendum eget arcu vitae malesuada. Quisque lectus metus, venenatis ut auctor et, vestibulum a orci. Sed ac turpis congue, bibendum mauris eu, condimentum velit. Curabitur id velit et dui tristique gravida. Proin neque velit, aliquet ac tristique ac, tempus id nisl. Donec congue mollis purus, sit amet venenatis massa commodo eget. Aliquam erat volutpat."))
-        ExperienceList.add(Experience(ExpPic = R.drawable.ic_logo_facebook,ExpName = "Facebook",ExpLoc = "United States",ExpFirstDate = "01/09/2013",ExpLastDate = "01/09/2015",ExpDesc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus imperdiet cursus elit at euismod. Maecenas bibendum eget arcu vitae malesuada. Quisque lectus metus, venenatis ut auctor et, vestibulum a orci. Sed ac turpis congue, bibendum mauris eu, condimentum velit. Curabitur id velit et dui tristique gravida. Proin neque velit, aliquet ac tristique ac, tempus id nisl. Donec congue mollis purus, sit amet venenatis massa commodo eget. Aliquam erat volutpat."))
-
-        ExperienceAdapter = ExperienceAdapter(ExperienceList)
+        ExperienceAdapter = ExperienceAdapter(expList)
         ExperienceRecycler.adapter = ExperienceAdapter
         ExperienceRecycler.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL ,false)
-    }
+        ExperienceAdapter.notifyDataSetChanged()
+
+
+
+
+        }
 
 
     companion object {

@@ -1,7 +1,9 @@
 package com.example.curriculumvitaev2
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 
 import androidx.appcompat.app.AppCompatActivity
@@ -44,7 +46,26 @@ class carrerActivity:AppCompatActivity() {
         menuInflater.inflate(R.menu.careermenu,menu)
         return true
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
 
+
+            R.id.addExperienece -> {
+                val intent = Intent(this, addExperience::class.java)
+                startActivity(intent)
+            }
+
+            R.id.addEducation -> {
+            /*    getSharedPreferences(PREF_NAME, MODE_PRIVATE).edit().clear().apply()
+                finish()
+            *
+
+             */
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 
 }
