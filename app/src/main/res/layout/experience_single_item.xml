@@ -34,6 +34,15 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/gradiant_overlay" />
 
+                <ImageView
+                    android:id="@+id/deleteEXP"
+                    android:layout_width="200dp"
+                    android:layout_height="89dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="289dp"
+                    android:layout_marginBottom="132dp"
+                    android:src="@drawable/ic_delete" />
+
             </FrameLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -76,12 +85,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.92" />
-
-                <Button
-                    android:id="@+id/deleteEXP"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Delete" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

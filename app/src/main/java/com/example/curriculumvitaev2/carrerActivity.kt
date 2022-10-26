@@ -56,11 +56,8 @@ class carrerActivity:AppCompatActivity() {
             }
 
             R.id.addEducation -> {
-            /*    getSharedPreferences(PREF_NAME, MODE_PRIVATE).edit().clear().apply()
-                finish()
-            *
-
-             */
+                val intent = Intent(this, addEducation::class.java)
+                startActivity(intent)
             }
 
         }

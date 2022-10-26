@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.curriculumvitaev2.Data.Experience
-lateinit var delete: Button
+lateinit var delete: ImageView
 
 class ExperienceAdapter(val ExpList: MutableList<Experience>) : RecyclerView.Adapter<ExperienceViewHolder>() {
 
@@ -23,7 +23,7 @@ class ExperienceAdapter(val ExpList: MutableList<Experience>) : RecyclerView.Ada
 
     }
     override fun onBindViewHolder(holder: ExperienceViewHolder, position: Int) {
-        holder.ExpPic.setImageResource( R.drawable.ic_logo_esprit)
+        holder.ExpPic.setImageResource( R.drawable.ic_logo_amazon)
         holder.ExpName.setText(ExpList[position].compName)
         holder.ExpLoc.setText(ExpList[position].compAdd)
         holder.ExpFirstDate.setText(ExpList[position].startDate)

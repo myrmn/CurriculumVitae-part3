@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.curriculumvitaev2.Data.Education
+import com.example.curriculumvitaev2.Data.Experience
+import com.example.curriculumvitaev2.utils.AppDataBase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,20 +45,18 @@ class EducationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        dataBase = AppDataBase.getDatabase(view.context)
+        lateinit var edList : MutableList<Education>
+        edList = ArrayList()
+        edList = dataBase.eduDAO().getAllUniversities() as MutableList<Education>
+
         EducationRecycler = view.findViewById(R.id.EducationRecycler)!!
 
 
-        var EducationList : MutableList<Education> = ArrayList()
-        EducationList.add(Education(EduPic = R.drawable.ic_logo_massachusetts,EduName = "Massachusetts",EduLoc = "United States",EduFirstDate = "01/09/2020",EduLastDate = "TODAY"))
-        EducationList.add(Education(EduPic = R.drawable.ic_logo_oxford,EduName = "Oxford",EduLoc = "United States",EduFirstDate = "01/09/2018",EduLastDate = "31/08/2020"))
-
-        EducationList.add(Education(EduPic = R.drawable.ic_logo_stanford,EduName = "Standford",EduLoc = "United States",EduFirstDate = "01/09/2019",EduLastDate = "31/08/2018"))
-        EducationList.add(Education(EduPic = R.drawable.ic_logo_cambridge,EduName = "Cambridge",EduLoc = "United States",EduFirstDate = "01/09/2016",EduLastDate = "31/08/2018"))
-        EducationList.add(Education(EduPic = R.drawable.ic_logo_harvard,EduName = "Harvard",EduLoc = "United States",EduFirstDate = "01/09/2016",EduLastDate = "31/08/2018"))
-        EducationList.add(Education(EduPic = R.drawable.ic_logo_harvard,EduName = "Harvard",EduLoc = "United States",EduFirstDate = "01/09/2016",EduLastDate = "31/08/2018"))
-        EducationAdapter = educationAdapter(EducationList)
+        EducationAdapter = educationAdapter(edList)
         EducationRecycler.adapter = EducationAdapter
         EducationRecycler.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL ,false)
+        EducationAdapter.notifyDataSetChanged()
 
     }
 
